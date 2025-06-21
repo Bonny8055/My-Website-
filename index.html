@@ -4,8 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bhanu Prakash - XR Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #ffcc00;
+      --secondary: #ff4d4d;
+      --dark: #121212;
+      --dark-gray: #1e1e1e;
+      --medium-gray: #3e3d3d;
+      --light-gray: #d0cfca;
+      --white: #ffffff;
+      --transition: all 0.3s ease;
+    }
+    
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,96 +26,190 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #323232;
-      color: #fff;
+      background-color: var(--dark);
+      color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    /* Hero Section */
     .hero {
       text-align: center;
-      padding: 4rem 1rem;
-      background: radial-gradient(circle at top left, #242424, #0f0f0f);
+      padding: 6rem 1rem 4rem;
+      background: radial-gradient(ellipse at top, #242424, #0f0f0f);
       position: relative;
       animation: fadeIn 1s ease-in-out;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('Assets/bg-pattern.png') repeat;
+      opacity: 0.05;
+      pointer-events: none;
     }
 
     .hero .bg-circle {
       position: absolute;
-      width: 280px;
-      height: 280px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-      top: 4rem;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      opacity: 0.2;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       z-index: 1;
+      animation: pulse 8s infinite alternate;
     }
 
     .hero img {
-      width: 180px;
-      height: 260px;
+      width: 200px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
       z-index: 2;
-      animation: float 0s ease-in-out infinite;
       position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: var(--transition);
+      border: 3px solid var(--primary);
+    }
+
+    .hero img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      margin-top: -1.7rem;
-      font-size: 2.5rem;
-      color: #ffcc00;
+      margin: 1.5rem 0 0.5rem;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--primary);
       position: relative;
       z-index: 1;
-      cursor: pointer;
-      /* animation: float 3s ease-in-out infinite; */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      line-height: 1.2;
+    }
+
+    .hero h1 .greeting {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--light-gray);
+      margin-bottom: 0.5rem;
     }
 
     .hero p {
       font-size: 1.2rem;
-      color: #ccc;
+      color: var(--light-gray);
+      margin-bottom: 2rem;
       position: relative;
       z-index: 1;
-      /* animation: float 3s ease-in-out infinite; */
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero p a {
-      color: #ffcc00;
+      color: var(--primary);
       text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
     }
 
     .hero p a:hover {
+      color: var(--secondary);
       text-decoration: underline;
     }
 
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--dark);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: transparent;
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    /* Section Titles */
     .section-title {
       text-align: center;
-      font-size: 1.8rem;
-      margin: 0.2rem 0 1rem;
-      color: #ffcc00;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin: 3rem 0 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    .redsection-title {
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .dots-divider {
       text-align: center;
       font-size: 1.8rem;
-      margin: 0.2rem 0 1rem;
-      color: #ff0000;
-    }
-    
-
-    .logos {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 3rem;
-      padding: 1rem;
+      margin: 2rem 0;
+      color: var(--secondary);
+      letter-spacing: 0.5rem;
     }
 
-    .logos img {
-      width: 35px;
-      height: 50px;
-    }
-
+    /* Interactive Page */
     .interactive-page {
       display: none;
       position: fixed;
@@ -111,14 +217,36 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #121212;
-      z-index: 9999;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
       padding: 2rem;
       overflow-y: auto;
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .interactive-page.active {
       display: block;
+      opacity: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 1.5rem;
+      color: var(--white);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1001;
+    }
+
+    .close-btn:hover {
+      color: var(--secondary);
+      transform: rotate(90deg);
     }
 
     .interactive-buttons {
@@ -127,97 +255,292 @@
       gap: 2rem;
       justify-content: center;
       margin-top: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .interactive-buttons .card {
-      background: #3e3d3d;
-      border: 2px solid #333;
+    .card {
+      background: var(--dark-gray);
       border-radius: 12px;
-      width: 200px;
+      width: 100%;
+      max-width: 350px;
       text-align: center;
-      padding: 1rem;
-      color: #fff;
-      transition: transform 0.3s;
+      padding: 1.5rem;
+      color: var(--white);
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
     }
 
-    .interactive-buttons .card:hover {
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
       transform: scale(1.05);
     }
 
-    .interactive-buttons img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
+    .card h3 {
+      font-size: 1.3rem;
+      margin: 1rem 0;
+      color: var(--primary);
     }
 
-    .footer {
-      text-align: center;
-      padding: 1rem 1rem;
+    .card p {
+      color: var(--light-gray);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .card .btn {
+      padding: 0.6rem 1.2rem;
       font-size: 0.9rem;
-      color: #ffffff;
-      background-color: #9b2626;
     }
 
-    .footer a {
-      color: #ffcc00;
-      margin: 0 0.5rem;
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
+    /* About Sections */
     .about-columns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
       padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .about-columns section {
       flex: 1 1 300px;
-      background: #151515;
-      padding: 1rem 2rem;
-      border-radius: 10px;
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
     }
+
+    .about-columns section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
     .about-columns section h2 {
       font-size: 1.5rem;
-      color: #ffcc00;
-      margin-bottom: 1rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
     }
-    .about-column {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-}
 
-.about-column section {
-  flex: 1 1 600px;
-  background: #000000;
-  padding: 2rem 2rem;
-  border-radius: 10px; /* more natural rounding */
-  text-align: center;
-}
-
-.about-column section h2 {
-  font-size: 1.5rem;
-  color: #d0cfca;
-  margin-bottom: 1rem;
-}
-
+    .about-columns section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary);
+    }
 
     .about-columns ul {
-      list-style-type: disc;
-      padding-left: 1rem;
-    }
-    .about-column ul {
-      list-style-type: disc;
-      padding-left: 1rem;
+      list-style-type: none;
     }
 
+    .about-columns li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--light-gray);
+    }
 
+    .about-columns li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    .about-columns a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .about-columns a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+
+    /* Team Section */
+    .about-column {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-column section {
+      flex: 1 1 100%;
+      background: var(--dark-gray);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-column section h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-column section p {
+      color: var(--light-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .about-column section .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .about-column section .quote {
+      font-style: italic;
+      color: var(--secondary);
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .about-column section .quote::before,
+    .about-column section .quote::after {
+      content: '"';
+      color: var(--secondary);
+    }
+
+    .about-column section .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--medium-gray), transparent);
+      margin: 2rem 0;
+    }
+
+    /* Tools Section */
+    .tools-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      padding: 2rem;
+    }
+
+    .logos img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+
+    .logos img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.9rem;
+      color: var(--white);
+      background-color: var(--dark-gray);
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .footer h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: var(--white);
+      font-size: 1.5rem;
+      transition: var(--transition);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--medium-gray);
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+      background: var(--dark);
+    }
+
+    .footer p {
+      margin-top: 1.5rem;
+      color: var(--light-gray);
+    }
+
+    .footer .emoji {
+      font-size: 1.5rem;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -230,150 +553,261 @@
       50% {
         transform: translateY(-10px);
       }
-    } 
+    }
 
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.3;
+      }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .interactive-buttons {
+      .hero {
+        padding: 4rem 1rem;
+      }
+      
+      .hero img {
+        width: 160px;
+        height: 240px;
+      }
+      
+      .about-columns {
+        padding: 1rem;
+      }
+      
+      .about-columns section {
+        flex: 1 1 100%;
+      }
+      
+      .logos img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .card {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .cta-buttons {
         flex-direction: column;
         align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Hero Section -->
   <div class="hero">
     <div class="bg-circle"></div>
-    <img src="Assets/bhanu.png" alt="Bhanu Prakash" onclick="openInteractivePage()" />
-    <h1><p>Hi 👋 , I'm</p>Bhanu Prakash</h1>
-    <p>A passionate XR Developer from India</p>
-  </div>
-
-  <div class="interactive-page" id="interactivePage">
-    <h2 class="section-title">Explore More</h2>
-    <div class="interactive-buttons">
-      <!-- product-1 -->
-      <div class="card" style="border: 1px solid #ddd; padding: 16px; border-radius: 8px; max-width: 320px;">
-        <!-- <h3 style="margin-top: 12px;">VR Simularion</h3> -->
-    <img src="Assets/Clubhouse.png" alt="AR/VR" style="width: 100%; border-radius: 8px;">
-    <h3 style="margin-top: 12px;">VR Clubhouse Experience</h3>
-    <p>Immersive VR experience for the construction industry to visualize architectural design in virtual reality.</p>
-    <a href="https://bhanuprakash.itch.io/villa-vr-view" target="_blank" style="display: inline-block; padding: 8px 16px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; margin-top: 8px;">View Project</a>
-  </div>
-      <!-- product-2 -->
-      <div class="card"style="border: 1px solid #ddd; padding: 16px; border-radius: 8px; max-width: 320px;">
-        <!-- <h3 style="margin-top: 12px;">2D Game</h3> -->
-        <img src="Assets/dino.png" alt="AI">
-        <h3 style="margin-top: 12px;">Dino Kurradu</h3>
-        <p>Its a basic 2D mobile app, player can collect the points and should finish the game within 3 lifelines.</p>
-        <a href="https://bhanuprakash.itch.io/dino" target="_blank" style="display: inline-block; padding: 8px 16px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; margin-top: 8px;">View Project</a>
-      </div>
-      <!-- product-3 -->
-      <div class="card">
-        <!-- <h3 style="margin-top: 12px;">3D Game</h3> -->
-        <img src="Assets/dream line.png" alt="UI">
-        <h3 style="margin-top: 12px;">Dream line</h3>
-        <p>A 3D mobile game developed for kids for Entertainment. Only for age 12 years and more. </p>
-        <a href="https://bhanuprakash.itch.io/dreamline" target="_blank" style="display: inline-block; padding: 8px 16px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; margin-top: 8px;">View Project</a>
-
+    <div class="hero-content">
+      <img src="Assets/bhanu.png" alt="Bhanu Prakash" onclick="openInteractivePage()" />
+      <h1><span class="greeting">Hi 👋, I'm</span>Bhanu Prakash</h1>
+      <p>A passionate XR Developer from India creating immersive experiences at the intersection of virtual and physical worlds.</p>
+      
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-eye"></i> View Projects
+        </a>
+        <a href="https://drive.google.com/file/d/14XO_qVdw1sUW9gSTfoBVq6scl1zv1eYq/view?usp=drive_link" class="btn btn-secondary" target="_blank">
+          <i class="fas fa-file-alt"></i> My Resume
+        </a>
       </div>
     </div>
-    <h5 class="redsection-title">.   .   .</h5>
-
-    <h5 class="redsection-title">Currently updating latest Projects!</h5>
   </div>
 
+  <!-- Projects Modal -->
+  <div class="interactive-page" id="interactivePage">
+    <button class="close-btn" onclick="closeInteractivePage()">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <h2 class="section-title">My Projects</h2>
+    
+    <div class="interactive-buttons" id="projects">
+      <!-- Project 1 -->
+      <div class="card">
+        <img src="Assets/Clubhouse.png" alt="VR Clubhouse">
+        <h3>VR Clubhouse Experience</h3>
+        <p>Immersive VR experience for the construction industry to visualize architectural design in virtual reality.</p>
+        <a href="https://bhanuprakash.itch.io/villa-vr-view" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i> View Project
+        </a>
+      </div>
+      
+      <!-- Project 2 -->
+      <div class="card">
+        <img src="Assets/dino.png" alt="Dino Kurradu">
+        <h3>Dino Kurradu</h3>
+        <p>Its a basic 2D mobile app, player can collect the points and should finish the game within 3 lifelines.</p>
+        <a href="https://bhanuprakash.itch.io/dino" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i> View Project
+        </a>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="card">
+        <img src="Assets/dream line.png" alt="Dream line">
+        <h3>Dream line</h3>
+        <p>A 3D mobile game developed for kids for Entertainment. Only for age 12 years and more.</p>
+        <a href="https://bhanuprakash.itch.io/dreamline" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i> View Project
+        </a>
+      </div>
+    </div>
+    
+    <div class="dots-divider">• • •</div>
+    
+    <h2 class="section-title">Currently Working On New Projects!</h2>
+  </div>
+
+  <!-- About Sections -->
   <div class="about-columns">
     <section>
-      <h2>🧑‍💼 About Me <h>  <a href="https://drive.google.com/file/d/14XO_qVdw1sUW9gSTfoBVq6scl1zv1eYq/view?usp=drive_link"> (Resume)</a></h></h2>
+      <h2><i class="fas fa-user"></i> About Me</h2>
       <ul>
         <li>Graduate of <strong>Vardhaman College of Engg</strong>.</li>
-        <!-- <li>I specialize in crafting immersive experiences using Unity, Blender, and XR tools.</li> -->
-        <li>Vicepresident for  <strong>Fine Arts Club and an active IEEE Member</strong>.</li>
+        <li>Vicepresident for <strong>Fine Arts Club and an active IEEE Member</strong>.</li>
         <li>XR Developer at <strong>Edgeforce Solution</strong>.</li>
         <li>Freelance XR developer & animator.</li>
         <li>Believe in next-gen human-machine interaction.</li>
-        <li>My : <a href="https://drive.google.com/file/d/1-a8QnDKdgViYlbTIK3xrLSaVvvWpxR6L/view?usp=sharing">Writings </a> <strong> & </strong><a href="https://bhanuprakash.itch.io/">Portfolio</a></li>
+        <li>My: <a href="https://drive.google.com/file/d/1-a8QnDKdgViYlbTIK3xrLSaVvvWpxR6L/view?usp=sharing">Writings</a> <strong>&</strong> <a href="https://bhanuprakash.itch.io/">Portfolio</a></li>
       </ul>
     </section>
+    
     <section>
-      <h2>🛠️ Projects</h2>
+      <h2><i class="fas fa-code"></i> Projects</h2>
       <ul>
         <li>Currently working on <strong>AI-Powered NPCs in Metaverse</strong>.</li>
-        <!-- <li>Have experience in creative or technical fields.</li> -->
-        
-        <li>Forklift VR Simulator (Basic VR Interactions) </li>
-        <li>A Interactive VR Clubhouse. <a href="https://youtu.be/ag8J3VoAMss?si=N9PanIkQUMw-Kgck">Link</a></li>
+        <li>Forklift VR Simulator (Basic VR Interactions)</li>
+        <li>Interactive VR Clubhouse <a href="https://youtu.be/ag8J3VoAMss?si=N9PanIkQUMw-Kgck">Demo</a></li>
         <li>Cross-Platform Robotic Arm Control.</li>
-        <li>Smart Home <a href=""></a></li>
-
+        <li>Smart Home Automation</li>
         <li>Open to immersive tech & AI exploration.</li>
-        <li>Let’s connect and build together!</li>
       </ul>
     </section>
+    
     <section>
-      <h2>🤝 Work & Collaborate</h2>
+      <h2><i class="fas fa-handshake"></i> Collaboration</h2>
       <ul>
-        <li>Looking to Collaborate for a school project.  <a href="https://docs.google.com/document/d/1y65pjByvmK0707RgaKE-01ZX21wue7_PqXkXAQdI6lA/edit?usp=sharing"> DOC</a></li>
+        <li>Looking to Collaborate for a school project. <a href="https://docs.google.com/document/d/1y65pjByvmK0707RgaKE-01ZX21wue7_PqXkXAQdI6lA/edit?usp=sharing">DOC</a></li>
         <li>Currently working on <strong>AI in NPCs</strong>.</li>
         <li>Team of passionate developers and designers.</li>
-        <li>Focusing on AI-powered XR applications and Web applications.</li>  
-        <!-- <li>Driven by curiosity and innovation.</li> -->
-        <!-- <li>Bringing immersive experiences to life.</li> -->
-        <li>Collaboration  <a href="https://docs.google.com/document/d/15VLExUPKL9B4xrZB2nxHQ4oAmV6b3FOuluQhZNt_4cY/edit?usp=sharing"> Page.</a></li>
-        
-      </ul> 
+        <li>Focusing on AI-powered XR applications and Web applications.</li>
+        <li>Collaboration <a href="https://docs.google.com/document/d/15VLExUPKL9B4xrZB2nxHQ4oAmV6b3FOuluQhZNt_4cY/edit?usp=sharing">Page</a></li>
+      </ul>
     </section>
   </div>
+
+  <!-- Team Section -->
   <div class="about-column">
     <section>
-      <h2>About our team</h2>
-      <ul>
-        <!-- <li>We are a team of passionate developers and designers.</li>
-        <li>Focusing on AI-powered XR applications.</li>
-        <li>Driven by curiosity and innovation.</li>
-        <li>Bringing immersive experiences to life.</li>
-        <li>Portfolio: <a href="https://bhanuprakash.itch.io/">Click Here</a></li><ul> -->
-        <li>Currently working on <strong>AI-Powered NPCs & Anatomy Lab</strong>.</li>
-        <p> </p>
-        <li>Exploring advanced <strong>AR/VR development</strong>.</li>
-        <!-- <li>Freelance XR development & animation.</li> -->
-        <p> <strong>AI in NPCs</strong> and exploring advanced <strong>AR/VR development</strong>. As a freelance XR developer and animator, I focus on building immersive and interactive experiences.</p>
-        <p>“Asked my teammate to model a volcano for our project... he sent me a coffee cup. Close enough, both erupt under pressure!” ☕🌋</p>
-        <p>.</p>
-        <p> *******************************************************************</p>
-        <p> From VR labs to robotic control systems and smart NPCs, my work reflects my belief that immersive technology can redefine how we interact with the digital world.</p>
-      </ul>  
+      <h2><i class="fas fa-users"></i> About Our Team</h2>
+      <p>We are currently working on <span class="highlight">AI-Powered NPCs & Anatomy Lab</span> projects, exploring advanced <span class="highlight">AR/VR development</span>. As a team of freelance XR developers and animators, we focus on building immersive and interactive experiences.</p>
+      
+      <p class="quote">Asked my teammate to model a volcano for our project... he sent me a coffee cup. Close enough, both erupt under pressure! ☕🌋</p>
+      
+      <div class="divider"></div>
+      
+      <p>From VR labs to robotic control systems and smart NPCs, our work reflects our belief that immersive technology can redefine how we interact with the digital world.</p>
     </section>
   </div>
 
-  <h2 class="section-title">Tools & Software</h2>
-  <div class="logos">
-    <img src="Assets/blender.png" alt="BLENDER">
-    <img src="Assets/Unity.png" alt="UNITY">
-    <img src="Assets/open cv.png" alt="OPEN CV">
-    <img src="Assets/figma.png" alt="FIGMA">
-    <img src="Assets/git hub.png" alt="GitHub">
+  <!-- Tools Section -->
+  <h2 class="section-title">Tools & Technologies</h2>
+  <div class="tools-section">
+    <div class="logos">
+      <img src="Assets/blender.png" alt="Blender">
+      <img src="Assets/Unity.png" alt="Unity">
+      <img src="Assets/open cv.png" alt="OpenCV">
+      <img src="Assets/figma.png" alt="Figma">
+      <img src="Assets/git hub.png" alt="GitHub">
+    </div>
   </div>
 
+  <!-- Footer -->
   <div class="footer">
+    <h2>Connect With Me</h2>
     
-  <h2 class="section-tile">Connect with me:</h2>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/tammali-bhanuprakash-a27739237/" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/Bonny8055" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.youtube.com/@Bhanuprakash-gf3fk" target="_blank" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://www.instagram.com/ig_the_original/" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="mailto:tammalibhanuprakash23@gmail.com" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
     
-    <a href="https://www.linkedin.com/in/tammali-bhanuprakash-a27739237/">LinkedIn</a>
-    <a href="https://github.com/Bonny8055">GitHub</a>
-    <a href="https://www.youtube.com/@Bhanuprakash-gf3fk">YouTube</a>
-    <a href="https://www.instagram.com/ig_the_original/">Instagram</a>
-    <a href="https://mail.google.com/mail/u/2/#inbox"><em>G-mail</em></a>
-    <h4 class="section-tile">tammalibhanuprakash23@gmail.com</h4>
-    <h4 class="section-tile">. </h4>
-    <h4 class="section-tile">( ͡ಠ ʖ̯ ͡ಠ) </h4>
+    <p>tammalibhanuprakash23@gmail.com</p>
+    
+    <p><span class="emoji">( ͡ಠ ʖ̯ ͡ಠ)</span></p>
   </div>
-  
 
   <script>
     function openInteractivePage() {
       document.getElementById('interactivePage').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
+    
+    function closeInteractivePage() {
+      document.getElementById('interactivePage').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside content
+    document.getElementById('interactivePage').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeInteractivePage();
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
