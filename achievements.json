@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Became XR Developer at Edgeforce Solution",
+    "description": "Started my professional journey in immersive technologies, working on cutting-edge VR/AR projects.",
+    "date": "2023-06-15"
+  },
+  {
+    "title": "Graduated from Vardhaman College of Engg",
+    "description": "Completed my degree with honors while serving as Vice President of the Fine Arts Club.",
+    "date": "2023-05-20"
+  },
+  {
+    "title": "Published First VR Project",
+    "description": "Released my first VR experience on itch.io, gaining positive feedback from the community.",
+    "date": "2022-12-10"
+  },
+  {
+    "title": "IEEE Active Member",
+    "description": "Contributed to technical events and workshops as an active IEEE member.",
+    "date": "2022-09-01"
+  },
+  {
+    "title": "First Unity Project Completed",
+    "description": "Built my first complete game using Unity, marking the start of my development journey.",
+    "date": "2021-07-15"
+  }
+]
